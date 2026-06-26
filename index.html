@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova Access | Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="k.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="#" class="logo" aria-label="Nova home">Nova</a>
+
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <ion-icon name="menu-outline"></ion-icon>
+    </button>
+
+    <nav class="navigation" id="navigation" aria-label="Primary navigation">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <button class="btnlogin-popup" type="button">Login</button>
+    </nav>
+  </header>
+
+  <main class="page-shell" id="home">
+    <section class="hero-copy" aria-label="Welcome section">
+      <p class="eyebrow">Secure member access</p>
+      <h1>Simple sign in for your digital workspace.</h1>
+      <p class="hero-text">
+        A polished login and registration interface with a clean glass layout, smooth transitions and responsive behavior across laptop and mobile screens.
+      </p>
+      <div class="hero-actions">
+        <button class="primary-action" type="button">Get Started</button>
+        <a href="#about" class="secondary-action">Learn More</a>
+      </div>
+      <div class="trust-row" aria-label="Highlights">
+        <span><ion-icon name="shield-checkmark-outline"></ion-icon> Secure UI</span>
+        <span><ion-icon name="phone-portrait-outline"></ion-icon> Responsive</span>
+        <span><ion-icon name="sparkles-outline"></ion-icon> Modern</span>
+      </div>
+    </section>
+
+    <section class="preview-card" aria-label="Account preview">
+      <div class="preview-top">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="preview-profile">
+        <div class="avatar">N</div>
+        <div>
+          <strong>Welcome back</strong>
+          <p>Manage your account in one place.</p>
+        </div>
+      </div>
+      <div class="preview-list">
+        <div><span></span><p>Profile verified</p></div>
+        <div><span></span><p>Session protected</p></div>
+        <div><span></span><p>Ready to continue</p></div>
+      </div>
+    </section>
+  </main>
+
+  <section class="content-band" id="about">
+    <article>
+      <ion-icon name="lock-closed-outline"></ion-icon>
+      <h2>Clean Forms</h2>
+      <p>Centered inputs, clear labels and comfortable spacing for a better user experience.</p>
+    </article>
+    <article id="services">
+      <ion-icon name="resize-outline"></ion-icon>
+      <h2>Responsive Layout</h2>
+      <p>The design adapts neatly for desktop, laptop, tablet and mobile screen sizes.</p>
+    </article>
+    <article id="contact">
+      <ion-icon name="color-wand-outline"></ion-icon>
+      <h2>Premium Feel</h2>
+      <p>Soft glass surfaces, calm motion and balanced contrast make the page feel refined.</p>
+    </article>
+  </section>
+
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <section class="wrapper" id="authWrapper" aria-label="Authentication dialog">
+    <button class="icon-close" type="button" aria-label="Close login form">
+      <ion-icon name="close-outline"></ion-icon>
+    </button>
+
+    <div class="form-box login">
+      <h2>Welcome back</h2>
+      <p class="form-subtitle">Login to continue to your account.</p>
+      <form action="#">
+        <div class="input-box">
+          <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+          <input id="loginEmail" type="email" required autocomplete="email">
+          <label for="loginEmail">Email</label>
+        </div>
+
+        <div class="input-box">
+          <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+          <input id="loginPassword" type="password" required autocomplete="current-password">
+          <label for="loginPassword">Password</label>
+          <button class="password-toggle" type="button" aria-label="Show password"><ion-icon name="eye-outline"></ion-icon></button>
+        </div>
+
+        <div class="remember-forgot">
+          <label><input type="checkbox"> Remember me</label>
+          <a href="#">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+        <p class="form-message" aria-live="polite"></p>
+
+        <div class="login-register">
+          <p>Don't have an account? <a href="#" class="register-link">Register</a></p>
+        </div>
+      </form>
+    </div>
+
+    <div class="form-box register">
+      <h2>Create account</h2>
+      <p class="form-subtitle">Start with a few quick details.</p>
+      <form action="#">
+        <div class="input-box">
+          <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+          <input id="registerName" type="text" required autocomplete="username">
+          <label for="registerName">Username</label>
+        </div>
+
+        <div class="input-box">
+          <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+          <input id="registerEmail" type="email" required autocomplete="email">
+          <label for="registerEmail">Email</label>
+        </div>
+
+        <div class="input-box">
+          <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+          <input id="registerPassword" type="password" required minlength="6" autocomplete="new-password">
+          <label for="registerPassword">Password</label>
+          <button class="password-toggle" type="button" aria-label="Show password"><ion-icon name="eye-outline"></ion-icon></button>
+        </div>
+
+        <div class="remember-forgot single">
+          <label><input type="checkbox" required> I agree to the terms & conditions</label>
+        </div>
+
+        <button type="submit" class="btn">Register</button>
+        <p class="form-message" aria-live="polite"></p>
+
+        <div class="login-register">
+          <p>Already have an account? <a href="#" class="login-link">Login</a></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
