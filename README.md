@@ -34,16 +34,6 @@ login-page/
 └── README.md
 ```
 
-> *Folder names may vary depending on your repository structure.*
-
-## 📸 Preview
-
-Add a screenshot of your project here.
-
-```markdown
-![Login Page Screenshot](images/screenshot.png)
-```
-
 ## 🎯 What I Learned
 
 This project helped me improve my understanding of:
@@ -85,5 +75,3 @@ This project is intended for **educational purposes** and is licensed under the 
 - Live Demo: https://anshuchourasia.github.io/login-page/
 
 ---
-
-⭐ If you found this project useful, consider giving it a **Star**!
