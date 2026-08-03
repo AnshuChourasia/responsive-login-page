@@ -202,5 +202,22 @@ window.addEventListener("scroll", () => {
         header.style.boxShadow = "none";
 
     }
+    ScrollReveal().reveal(".hero-copy", {
+    distance: "40px",
+    duration: 900,
+    origin: "left"
+});
+
+ScrollReveal().reveal(".preview-card", {
+    distance: "40px",
+    duration: 900,
+    origin: "right"
+});
+
+ScrollReveal().reveal(".content-band article", {
+    interval: 200,
+    distance: "30px",
+    origin: "bottom"
+});
 
 });
