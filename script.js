@@ -1,87 +1,206 @@
-﻿const wrapper = document.querySelector(".wrapper");
-const overlay = document.querySelector("#overlay");
-const loginLink = document.querySelector(".login-link");
+const wrapper = document.querySelector(".wrapper");
+const loginBtn = document.querySelector(".btnlogin-popup");
+const closeBtn = document.querySelector(".icon-close");
 const registerLink = document.querySelector(".register-link");
-const btnPopup = document.querySelector(".btnlogin-popup");
-const iconClose = document.querySelector(".icon-close");
-const menuToggle = document.querySelector("#menuToggle");
-const navigation = document.querySelector("#navigation");
-const primaryAction = document.querySelector(".primary-action");
-const forms = document.querySelectorAll("form");
-const passwordToggles = document.querySelectorAll(".password-toggle");
+const loginLink = document.querySelector(".login-link");
+const overlay = document.querySelector(".overlay");
 
-function openPopup(showRegister = false) {
-  wrapper.classList.add("active-popup");
-  overlay.classList.add("show");
-  wrapper.classList.toggle("active", showRegister);
-}
+const menuToggle = document.getElementById("menuToggle");
+const navigation = document.getElementById("navigation");
+
+// ==========================
+// Open Login Popup
+// ==========================
+
+loginBtn.addEventListener("click", () => {
+    wrapper.classList.add("active-popup");
+    overlay.classList.add("show");
+    document.body.style.overflow = "hidden";
+});
+
+// ==========================
+// Close Popup
+// ==========================
 
 function closePopup() {
-  wrapper.classList.remove("active-popup", "active");
-  overlay.classList.remove("show");
+    wrapper.classList.remove("active-popup");
+    wrapper.classList.remove("active");
+    overlay.classList.remove("show");
+    document.body.style.overflow = "";
 }
 
-function closeMenu() {
-  navigation.classList.remove("open");
-  menuToggle.setAttribute("aria-expanded", "false");
-}
+closeBtn.addEventListener("click", closePopup);
 
-registerLink.addEventListener("click", (event) => {
-  event.preventDefault();
-  wrapper.classList.add("active");
-});
-
-loginLink.addEventListener("click", (event) => {
-  event.preventDefault();
-  wrapper.classList.remove("active");
-});
-
-btnPopup.addEventListener("click", () => {
-  closeMenu();
-  openPopup(false);
-});
-
-primaryAction.addEventListener("click", () => openPopup(false));
-iconClose.addEventListener("click", closePopup);
 overlay.addEventListener("click", closePopup);
 
+// Escape Key
+
+document.addEventListener("keydown", (e) => {
+
+    if (e.key === "Escape") {
+
+        closePopup();
+
+    }
+
+});
+
+// ==========================
+// Register/Login Switching
+// ==========================
+
+registerLink.addEventListener("click", (e) => {
+
+    e.preventDefault();
+
+    wrapper.classList.add("active");
+
+});
+
+loginLink.addEventListener("click", (e) => {
+
+    e.preventDefault();
+
+    wrapper.classList.remove("active");
+
+});
+
+// ==========================
+// Mobile Navigation
+// ==========================
+
 menuToggle.addEventListener("click", () => {
-  const isOpen = navigation.classList.toggle("open");
-  menuToggle.setAttribute("aria-expanded", String(isOpen));
+
+    navigation.classList.toggle("open");
+
 });
 
-document.querySelectorAll(".navigation a").forEach((link) => {
-  link.addEventListener("click", closeMenu);
+// ==========================
+// Password Toggle
+// ==========================
+
+document.querySelectorAll(".password-toggle").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const input = button.parentElement.querySelector("input");
+
+        const icon = button.querySelector("ion-icon");
+
+        if (input.type === "password") {
+
+            input.type = "text";
+
+            icon.setAttribute("name", "eye-off-outline");
+
+        }
+
+        else {
+
+            input.type = "password";
+
+            icon.setAttribute("name", "eye-outline");
+
+        }
+
+    });
+
 });
 
-passwordToggles.forEach((toggle) => {
-  toggle.addEventListener("click", () => {
-    const input = toggle.parentElement.querySelector("input");
-    const isHidden = input.type === "password";
-    input.type = isHidden ? "text" : "password";
-    toggle.innerHTML = isHidden
-      ? '<ion-icon name="eye-off-outline"></ion-icon>'
-      : '<ion-icon name="eye-outline"></ion-icon>';
-    toggle.setAttribute("aria-label", isHidden ? "Hide password" : "Show password");
-  });
+// ==========================
+// Simple Login Validation
+// ==========================
+
+const loginForm = document.querySelector(".login form");
+
+loginForm.addEventListener("submit", function (e) {
+
+    e.preventDefault();
+
+    const email = loginForm.querySelector("input[type=email]").value.trim();
+
+    const password = loginForm.querySelector("input[type=password]").value.trim();
+
+    const message = loginForm.querySelector(".form-message");
+
+    if (!email || !password) {
+
+        message.style.color = "#ef4444";
+
+        message.textContent = "Please fill all fields.";
+
+        return;
+
+    }
+
+    message.style.color = "#10b981";
+
+    message.textContent = "Login Successful ✓";
+
 });
 
-forms.forEach((form) => {
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const message = form.querySelector(".form-message");
-    message.textContent = form.closest(".register")
-      ? "Account preview created successfully."
-      : "Login preview successful.";
-    setTimeout(() => {
-      message.textContent = "";
-    }, 2600);
-  });
+// ==========================
+// Register Validation
+// ==========================
+
+const registerForm = document.querySelector(".register form");
+
+registerForm.addEventListener("submit", function (e) {
+
+    e.preventDefault();
+
+    const username = registerForm.querySelector("input[type=text]").value.trim();
+
+    const email = registerForm.querySelector("input[type=email]").value.trim();
+
+    const password = registerForm.querySelector("input[type=password]").value.trim();
+
+    const message = registerForm.querySelector(".form-message");
+
+    if (username.length < 3) {
+
+        message.style.color = "#ef4444";
+
+        message.textContent = "Username too short.";
+
+        return;
+
+    }
+
+    if (password.length < 6) {
+
+        message.style.color = "#ef4444";
+
+        message.textContent = "Password must be at least 6 characters.";
+
+        return;
+
+    }
+
+    message.style.color = "#10b981";
+
+    message.textContent = "Account Created Successfully ✓";
+
 });
 
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    closePopup();
-    closeMenu();
-  }
+// ==========================
+// Navbar Shadow on Scroll
+// ==========================
+
+window.addEventListener("scroll", () => {
+
+    const header = document.querySelector(".site-header");
+
+    if (window.scrollY > 40) {
+
+        header.style.boxShadow = "0 8px 25px rgba(0,0,0,.35)";
+
+    }
+
+    else {
+
+        header.style.boxShadow = "none";
+
+    }
+
 });
